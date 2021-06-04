@@ -4,16 +4,17 @@ import cv2
 from main import StyleTransferNetwork
 
 # 输入的内容图片、风格图片
-input_content_image_path = ".\\content\\126.jpg"
-input_style_image_path = ".\\style\\2323713.jpg"
+input_content_image_path = ""
+input_style_image_path = ""
 # 输出结果图片
-output_file_path = "gg.jpg"
+output_file_path = ""
 
 model = StyleTransferNetwork()
 cuda = torch.cuda.is_available()
 if cuda:
     model = model.cuda()
-checkpoint = torch.load(".\\models\\AdaIN_epoch_5")
+# 加载模型。CPU或GPU对不上的话，map_location指定一下即可
+checkpoint = torch.load("")
 model.load_state_dict(checkpoint)
 model.eval()
 

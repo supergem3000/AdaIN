@@ -230,7 +230,7 @@ if __name__ == "__main__":
             "models", "AdaIN_epoch_{}".format(pre)))
         model.load_state_dict(checkpoint)
 
-    optimizer = torch.optim.Adam(model.decoder.parameters(), lr=1e-3)
+    optimizer = torch.optim.Adam(model.decoder.parameters(), lr=1e-4)
 
     # 训练几次
     train(200)
