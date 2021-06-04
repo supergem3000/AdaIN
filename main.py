@@ -217,7 +217,7 @@ if __name__ == "__main__":
 
     dataset = TrainDataset(content_dir=content_dir, style_dir=style_dir)
     data_loader = DataLoader(dataset, batch_size=16)
-    pre = 1
+    pre = -1
     cuda = torch.cuda.is_available()
 
     model = StyleTransferNetwork()
