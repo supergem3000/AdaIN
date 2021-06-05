@@ -21,6 +21,8 @@ class StyleTransferNetwork(nn.Module):
         self.encoder_layer2 = encoder[2:7]
         self.encoder_layer3 = encoder[7:12]
         self.encoder_layer4 = encoder[12:21]
+        for p in self.parameters():
+            p.requires_grad = False
         # AdaIN 训练的是decoder
         self.decoder = nn.Sequential(
             # nn.Upsample(scale_factor=2, mode="nearest"),
