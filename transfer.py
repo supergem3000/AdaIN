@@ -1,6 +1,7 @@
 import torch
 import torchvision.transforms as transforms
 import cv2
+from PIL import Image
 from main import StyleTransferNetwork
 
 # 输入的内容图片、风格图片
@@ -28,10 +29,12 @@ style_img = cv2.imread(input_style_image_path)
 style_img = cv2.resize(style_img, (256, 256))
 style_img = transforms.ToTensor()(style_img).unsqueeze(0)
 if cuda:
-    content_img = content_img.cuda()
+    style_img = style_img.cuda()
 
 output_tensor = model.output_pic(content_img, style_img)
 output_tensor = output_tensor.squeeze(0)
 output_img = transforms.ToPILImage()(output_tensor)
+b, g, r = output_img.split()
+output_img = Image.merge("RGB", (r, g, b))
 output_img.show()
 output_img.save(output_file_path)
